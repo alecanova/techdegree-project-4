@@ -1,6 +1,7 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * Phrase.js */
+
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
@@ -28,6 +29,35 @@ class Phrase {
                 letter.innerHTML = splitPhrase[i];
                 ul.appendChild(letter);
                 
+            }
+
+        }
+
+    }
+
+    /**
+    * Checks if passed letter is in phrase
+    * @param (string) letter - Letter to check
+    */
+    checkLetter(letter) {
+
+        return this.phrase.includes(letter);
+
+    }
+
+    /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+    showMatchedLetter(letter){
+
+        const selectLetter = document.getElementsByClassName('letter');
+
+        for(let i = 0; i < selectLetter.length; i++) {
+
+            if (letter === this.selectLetter[i].innerHTML) {
+
+                this.selectLetter[i].classList.add('show');
             }
 
         }
