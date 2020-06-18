@@ -17,11 +17,11 @@
     createPhrases() {
 
         const randomPhrases = [
-            new Phrase('Life is like a box of chocolates'),
-            new Phrase('There is no trying'),
-            new Phrase('May the force be with you'),
-            new Phrase('You have to see the matrix for yourself'),
-            new Phrase('You talking to me'),
+            new Phrase('Frankly my dear I dont give a damn'),
+            new Phrase('I love the smell of napalm in the morning'),
+            new Phrase('Hard work beats talent'),
+            new Phrase('You had me at hello'),
+            new Phrase('Just keep swimming'),
         ];
 
         return randomPhrases;
@@ -43,12 +43,76 @@
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
-        const overlay = document.getElementById('overlay');
-        overlay.style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
        
     }
 
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */
+    checkForWin() {
+
+        const letterRevealed = document.getElementsByClassName('show');
+        const selectLetter = document.getElementsByClassName('letter');
+
+            if (selectLetter.length === letterRevealed.length) {
+
+                return true
+
+            } else {
+
+                return false;
+
+            }
+
+        }
+
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+
+        const tries = document.getElementsByClassName('tries');
+        tries[this.missed].firstElementChild.src = 'images/lostHeart.png';
+        this.missed ++;
+
+        if (this.missed === 5) {
+
+            this.gameOver(false);
+
+        }
+
+    }
+
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+
+        if (gameWon) {
+
+            document.getElementById('overlay').style.display = '';
+            document.getElementById('game-over-message').textContent = 'You nailed it! Well done!';
+            document.getElementById('overlay').classList.add('win');
+
+        } else {
+
+            document.getElementById('overlay').style.display = '';
+            document.getElementById('game-over-message').textContent = 'Wrong guess, try again!';
+            document.getElementById('overlay').classList.add('lose');
+
+        }
+
+    }
+    
 }
+
+
 

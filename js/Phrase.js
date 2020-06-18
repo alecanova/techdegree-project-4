@@ -16,7 +16,7 @@ class Phrase {
 
         for(let i = 0; i < this.phrase.length; i++) {
 
-            if(splitPhrase[i] === ' ') {
+            if (splitPhrase[i] === ' ') {
                 const space = document.createElement('li');
                 space.classList.add('space');
                 space.innerHTML = ' ';
@@ -55,9 +55,10 @@ class Phrase {
 
         for(let i = 0; i < selectLetter.length; i++) {
 
-            if (letter === this.selectLetter[i].innerHTML) {
+            if (letter == selectLetter[i].innerHTML) {
 
-                this.selectLetter[i].classList.add('show');
+                selectLetter[i].classList.add('show');
+
             }
 
         }
