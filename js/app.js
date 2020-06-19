@@ -11,3 +11,14 @@ document.getElementById('btn__reset').addEventListener('click', function() {
 
 });
 
+/******** */
+const keys = document.getElementsByClassName('key');
+
+for(let i = 0; i < keys.length; i++) {
+
+    keys[i].addEventListener('click', function(e) {
+
+        game.handleInteraction(e.target);
+
+    });
+}

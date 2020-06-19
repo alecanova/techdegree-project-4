@@ -17,11 +17,11 @@
     createPhrases() {
 
         const randomPhrases = [
-            new Phrase('Frankly my dear I dont give a damn'),
-            new Phrase('I love the smell of napalm in the morning'),
-            new Phrase('Hard work beats talent'),
-            new Phrase('You had me at hello'),
-            new Phrase('Just keep swimming'),
+            new Phrase('Dazed and confused'),
+            new Phrase('Coffee and cigarettes'),
+            new Phrase('Down by law'),
+            new Phrase('Halt and catch fire'),
+            new Phrase('Eyes wide shut'),
         ];
 
         return randomPhrases;
@@ -47,6 +47,35 @@
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
        
+    }
+
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
+    handleInteraction(button) {
+
+        button.disabled = true;
+
+        if( this.activePhrase.checkLetter(button.innerHTML) ) {
+            
+            button.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(button.innerHTML);
+            button.style.transform = 'rotate(360deg)';
+            
+            if( this.checkForWin() ) {
+
+                this.gameOver(true);
+                
+            };
+            
+        } else {
+
+                button.classList.add('wrong');
+                this.removeLife()
+
+        }
+        
     }
 
     /**
@@ -101,6 +130,7 @@
             document.getElementById('overlay').style.display = '';
             document.getElementById('game-over-message').textContent = 'You nailed it! Well done!';
             document.getElementById('overlay').classList.add('win');
+            button.style.transform = 'initial';
 
         } else {
 
