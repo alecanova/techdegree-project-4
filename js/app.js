@@ -3,16 +3,15 @@
  * app.js */
 
 let game;
+const keys = document.getElementsByClassName('key');
+const btnReset = document.getElementById('btn__reset');
 
-document.getElementById('btn__reset').addEventListener('click', function() {
+btnReset.addEventListener('click', function() {
 
     game = new Game();
     game.startGame();
 
 });
-
-/******** */
-const keys = document.getElementsByClassName('key');
 
 for(let i = 0; i < keys.length; i++) {
 
@@ -21,4 +20,23 @@ for(let i = 0; i < keys.length; i++) {
         game.handleInteraction(e.target);
 
     });
+
 }
+
+document.addEventListener('keydown', (e) => {
+
+    for(let i = 0; i < keys.length; i++) {
+
+        if ( (e.key === keys[i].innerHTML) &&
+           (keys[i].disable !== true) ) {
+
+            game.handleInteraction(keys[i]);
+
+           }
+
+    }
+
+});
+
+
+

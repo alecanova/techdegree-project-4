@@ -18,7 +18,7 @@
 
         const randomPhrases = [
             new Phrase('Dazed and confused'),
-            new Phrase('Coffee and cigarettes'),
+            new Phrase('Requiem for a dream'),
             new Phrase('Down by law'),
             new Phrase('Halt and catch fire'),
             new Phrase('Eyes wide shut'),
@@ -43,6 +43,7 @@
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
+
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
@@ -61,7 +62,7 @@
             
             button.classList.add('chosen');
             this.activePhrase.showMatchedLetter(button.innerHTML);
-            button.style.transform = 'rotate(360deg)';
+            
             
             if( this.checkForWin() ) {
 
@@ -130,19 +131,44 @@
             document.getElementById('overlay').style.display = '';
             document.getElementById('game-over-message').textContent = 'You nailed it! Well done!';
             document.getElementById('overlay').classList.add('win');
-            button.style.transform = 'initial';
-
+            this.resetGame();
+                  
         } else {
 
             document.getElementById('overlay').style.display = '';
             document.getElementById('game-over-message').textContent = 'Wrong guess, try again!';
             document.getElementById('overlay').classList.add('lose');
+            this.resetGame();
 
         }
 
     }
-    
+
+    resetGame () {
+
+        this.missed = 0;
+        document.querySelector('#phrase ul').innerHTML = '';
+        const lives = document.querySelectorAll(".tries img");
+        const keys = document.querySelectorAll('.key, .wrong, .chosen');
+
+        for(let i = 0; i < lives.length; i++) {
+
+            lives[i].src = 'images/liveHeart.png';
+
+        }
+
+        for(let i = 0; i < keys.length; i++) {
+
+            keys[i].disabled = false;
+            keys[i].className = 'key';
+
+          }
+
+    }
+
 }
+
+
 
 
 
