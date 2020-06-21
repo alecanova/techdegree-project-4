@@ -144,19 +144,27 @@
 
     }
 
+    /**
+    * Resets the gameboard between games.
+    */
     resetGame () {
 
         this.missed = 0;
+
+        // Removes all `li` elements from the Phrase `ul` element.
         document.querySelector('#phrase ul').innerHTML = '';
+
         const lives = document.querySelectorAll(".tries img");
         const keys = document.querySelectorAll('.key, .wrong, .chosen');
 
+        // Resets all of the heart images in the scoreboard.
         for(let i = 0; i < lives.length; i++) {
 
             lives[i].src = 'images/liveHeart.png';
 
         }
 
+        // Enables all of the onscreen keyboard buttons and update each to use the `key` class.
         for(let i = 0; i < keys.length; i++) {
 
             keys[i].disabled = false;
