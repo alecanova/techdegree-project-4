@@ -61,9 +61,9 @@
         if( this.activePhrase.checkLetter(button.innerHTML) ) {
             
             button.classList.add('chosen');
+            button.classList.add('animate__heartBeat');
             this.activePhrase.showMatchedLetter(button.innerHTML);
-            
-            
+
             if( this.checkForWin() ) {
 
                 this.gameOver(true);
@@ -73,6 +73,7 @@
         } else {
 
                 button.classList.add('wrong');
+                button.classList.add('animate__shakeX');
                 this.removeLife()
 
         }
@@ -114,7 +115,7 @@
 
         if (this.missed === 5) {
 
-            this.gameOver(false);
+            this.gameOver(this.checkForWin());
 
         }
 
@@ -126,21 +127,23 @@
     */
     gameOver(gameWon) {
 
+        const overlay = document.getElementById('overlay');
+        const gameOverMsg = document.getElementById('game-over-message');
+
         if (gameWon) {
 
-            document.getElementById('overlay').style.display = '';
-            document.getElementById('game-over-message').textContent = 'You nailed it! Well done!';
-            document.getElementById('overlay').classList.add('win');
-            this.resetGame();
+            overlay.style.display = '';
+            gameOverMsg.textContent = 'You nailed it! Well done!';
+            overlay.className = 'win';
                   
         } else {
 
-            document.getElementById('overlay').style.display = '';
-            document.getElementById('game-over-message').textContent = 'Wrong guess, try again!';
-            document.getElementById('overlay').classList.add('lose');
-            this.resetGame();
-
+            overlay.style.display = '';
+            gameOverMsg.textContent = 'Wrong guess, try again!';
+            overlay.className = 'lose';
         }
+
+        this.resetGame();
 
     }
 
