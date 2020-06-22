@@ -60,8 +60,7 @@
 
         if( this.activePhrase.checkLetter(button.innerHTML) ) {
             
-            button.classList.add('chosen');
-            button.classList.add('animate__heartBeat');
+            button.className = 'chosen';
             this.activePhrase.showMatchedLetter(button.innerHTML);
 
             if( this.checkForWin() ) {
@@ -72,8 +71,7 @@
             
         } else {
 
-                button.classList.add('wrong');
-                button.classList.add('animate__shakeX');
+                button.className = 'wrong';
                 this.removeLife()
 
         }
